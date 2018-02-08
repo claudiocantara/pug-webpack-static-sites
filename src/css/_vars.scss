@@ -1,0 +1,84 @@
+///////////////////////////////////////////////////////////////////////////////
+//  # Variables
+//--------------------------------
+//    Define all your global variables in this file
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+// ## Colours
+//---------------------------------
+//    Colors variables are used with the syntax below
+//    $selector {
+//      $rule:  colors(color-name);
+//    }
+//    not colour names as it won't affect your project in the long run
+///////////////////////////////////////////////////////////////////////////////
+
+$colors:(
+  brand: #FFF,
+  highlight: #ff8800
+);
+
+#__bs_notify__ {
+
+  &:before {
+    content: "";
+    width: 92px;
+    height: 24px;
+    display: inline-block;
+    margin-right: 13px;
+    background-image: url(~@img/adv_logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+  }
+
+  /* Original inline styles reference: */
+  /*
+  display: block;
+  padding: 15px;
+  font-family: sans-serif;
+  position: fixed;
+  font-size: 0.9em;
+  z-index: 9999;
+  right: 0px;
+  top: 0px;
+  border-bottom-left-radius: 5px;
+  margin: 0px;
+  color: white;
+  text-align: center;
+  background-color: rgb(27, 32, 50);
+   */
+}
+
+// ## Fonts
+//    Font variables are prefixed widt 'f-'. Try to use abstract names and
+//    not font names as it won't affect your project in the long run
+///////////////////////////////////////////////////////////////////////////////
+
+$f-display: 'Cabourg OT', sans-serif;
+$f-body:    'Aller', Arial, sans-serif;
+
+
+// # Media Queries break points
+//    MQ variables are prefixed widt 'vp-' (as in viewport). Try to use
+//    abstract names and not something specific as mobile, as it won't
+//    affect your project in the long run
+///////////////////////////////////////////////////////////////////////////////
+
+$vps: (
+  smaller: 375px,
+  small:  767px,
+  medium: 992px,
+  large:  1200px
+);
+
+
+// # Helpers
+//    Any global helper variable should be defined here. Try to chose a name
+//    that describes it the best as possible
+///////////////////////////////////////////////////////////////////////////////
+
+$container-width: 1432px;

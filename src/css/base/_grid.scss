@@ -1,0 +1,146 @@
+///////////////////////////////////////////////////////////////////////////////
+//  # Grid
+//    An adaptation from:
+//    http://css-tricks.com/dont-overthink-it-grids/
+///////////////////////////////////////////////////////////////////////////////
+
+
+// ## Grid Settings
+///////////////////////////////////////////////////////////////////////////////
+
+// Set the class name for your grid's container
+$grid-class: grid;
+
+// Mobile grid settings
+///////////////////////////////////////////////////////////////////////////////
+
+// [1] Set how many columns you need, set the mobile to 0
+//     to disable the mobile grid
+// [2] Set the name of the columns' class
+// [3] Good in pixels or rem but not em
+
+$mobile-columns-number: 4;      // [1]
+$mobile-column-name: col-small; // [2]
+$mobile-gutter: 10px;           // [3]
+
+
+// Tablet grid settings
+///////////////////////////////////////////////////////////////////////////////
+
+$tablet-columns-number: 12;      // [1]
+$tablet-column-name: col-medium; // [2]
+$tablet-gutter: 30px;            // [3]
+
+
+// Desktop grid settings
+///////////////////////////////////////////////////////////////////////////////
+
+$desktop-columns-number: 12;     // [1]
+$desktop-column-name: col-large; // [2]
+$desktop-gutter: 30px;           // [3]
+
+
+
+// Mixin to create the columns
+///////////////////////////////////////////////////////////////////////////////
+
+@mixin grid()  {
+  // Sets the width of one column for desktop
+  $mobile-column-width: 100 / $mobile-columns-number;
+  $tablet-column-width: 100 / $tablet-columns-number;
+  $desktop-column-width: 100 / $desktop-columns-number;
+
+  // Creates the widths for each mobile column
+  @if $mobile-columns-number > 0 {
+    @for $i from 1 to $mobile-columns-number + 1 {
+      #{"." + $mobile-column-name + "-" + $i} {
+        width: #{$mobile-column-width * $i + "%"};
+      }
+    }
+  }
+
+  // Creates the widths for each tablet column
+  @include at-media(small){
+    @for $i from 1 to $tablet-columns-number + 1 {
+      #{"." + $tablet-column-name + "-" + $i} {
+        width: #{$tablet-column-width * $i + "%"};
+      }
+    }
+  }
+
+  // Creates the widths for each desktop column
+  @include at-media(medium){
+    @for $i from 1 to $desktop-columns-number + 1 {
+      #{"." + $desktop-column-name + "-" + $i} {
+        width: #{$desktop-column-width * $i + "%"};
+      }
+    }
+  }
+}
+
+
+// The grid container
+///////////////////////////////////////////////////////////////////////////////
+.#{$grid-class} {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+// The columns classes
+///////////////////////////////////////////////////////////////////////////////
+
+[class*="#{$mobile-column-name + "-"}"],
+[class*="#{$tablet-column-name + "-"}"],
+[class*="#{$desktop-column-name + "-"}"] {
+  position: relative;
+  padding-right: $mobile-gutter / 2;
+  padding-left: $mobile-gutter / 2;
+  min-width: 1px;
+  min-height: 1px;
+
+  @include at-media(small){
+    padding-right: $tablet-gutter / 2;
+    padding-left: $tablet-gutter / 2;
+  }
+
+  @include at-media(medium){
+    padding-right: $desktop-gutter / 2;
+    padding-left: $desktop-gutter / 2;
+  }
+}
+
+
+// Creates the columns
+///////////////////////////////////////////////////////////////////////////////
+@include grid();
+
+
+
+.grid {
+
+  // Opt for no padding between the columns
+  ///////////////////////////////////////////////////////////////////////////////
+  &.no-padding {
+
+    > [class*="#{$mobile-column-name + "-"}"],
+    > [class*="#{$tablet-column-name + "-"}"],
+    > [class*="#{$desktop-column-name + "-"}"] {
+      padding: 0;
+    }
+  }
+
+  // Opt for no grid into grids
+  ///////////////////////////////////////////////////////////////////////////////
+
+  .grid {
+    padding: 0;
+  }
+
+  // Set the classes for alignment
+  ///////////////////////////////////////////////////////////////////////////////
+  &.center-x {
+    justify-content: center;
+  }
+}
+

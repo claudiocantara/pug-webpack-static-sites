@@ -1,0 +1,12 @@
+{
+    "analytics": "XXXXXX-XXXXX",
+    "url": "",
+    "title": "",
+    "keywords": "Aqui vão as palavras para mecanismos de buscas separadas por virgula. Ex: teste",
+    "description": "Aqui vai a descrição",
+    "themeColor": "#004282",
+    "img": "/assets/img/",
+    "js": "/assets/js/",
+    "json": "/assets/json/",
+    "css": "/assets/css/"
+  }

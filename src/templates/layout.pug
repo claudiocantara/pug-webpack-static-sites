@@ -1,0 +1,41 @@
+doctype html
+html.no-js(lang="pt-br" dir="ltr")
+  block vars
+
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    //- SEO, etc
+    title= title
+
+    block meta
+
+    meta(http-equiv="content-type" content="text/html")
+    meta(name="keywords" content= keywords)
+    meta(name="rights" content="")
+    meta(name="author" content="XXXXXXXXXXXX")
+    meta(name="description" content= description)
+    meta(name="theme-color" content= themeColor)
+
+    //- Social Meta Tags
+    include partials/_social-meta-tags.pug
+
+
+    block styles
+
+
+  body(class= (page ? page : ''))
+    include partials/_analytics.pug
+
+    block contents
+
+
+    block scripts
+
+
+
+
+

@@ -1,0 +1,25 @@
+//============================================================================
+  // Advance breakpoint mixin
+  // Configure your breakpoints using the $map: $vp on _var.scss file.
+  // You can use your breakpoint with your own variables or use a string
+  // like a number.
+//============================================================================
+
+@mixin at-media($vp) {
+  // Verify if this parameter exists on map
+  @if map-has-key($vps, $vp) {
+    @media (min-width: #{map-get($vps, $vp)}) {
+      @content;
+    }
+  }
+
+  // Verify if this parameter is a number
+  @else if type-of($vp) == number  {
+    @media (min-width: #{$vp}+"px") {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$vp}`. "  "Please make sure it is defined in `$vps` map.";
+  }
+}

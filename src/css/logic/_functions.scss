@@ -1,0 +1,41 @@
+///////////////////////////////////
+// Funções
+//////////////////////////////////////////////////////////////////////
+
+// Convert pixels em 'rem',
+// *******************************
+// deve ser chamada:
+// rem(100) ou
+// rem(100, 18)
+// O segundo parâmetro é o tamanho base do texto, como definido em
+// _base.scss > html
+//////////////////////////////////////////////////////////////////////
+@function rem($value, $base: 18) {
+  @if $base {
+    @return $value / $base + rem;
+  } @else {
+    @return $value / 18 + rem;
+  }
+}
+
+// Convert pixels em 'em'
+// *******************************
+// deve ser chamada:
+// em(100, 18)
+// O segundo parâmetro é o tamanho do texto do elemento pai
+/////////////////////////////////////////////////////////////////////
+@function em($value, $parent) {
+  @return $value / $parent + em;
+}
+
+// function to get the color
+// *******************************
+/////////////////////////////////////////////////////////////////////
+@function color($color) {
+  @if map-has-key($colors, $color) {
+    @return map-get($colors, $color);
+  } @else {
+    @warn 'esta cor não foi definida no mapa de cores.';
+    @return map-get($colors, brand);
+  }
+}

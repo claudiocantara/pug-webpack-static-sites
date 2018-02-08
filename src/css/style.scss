@@ -1,0 +1,40 @@
+/* *************************************** *
+** *************************************** *
+*   polygon.css by @eltonfmesquita
+*   A CSS boilerplate in SASS for
+*   today's and tomorrow's web.
+* **************************************** *
+* **************************************** */
+
+
+// # Imports
+//    Insert all your imports here. Avoid to import any file from anywhere
+///////////////////////////////////////////////////////////////////////////////
+
+// Logic
+@import "logic/functions";
+@import "logic/media-queries";
+
+// Base
+@import "vars";
+@import "base/normalize";
+@import "base/helpers";
+@import "base/resets";
+@import "base/base";
+@import "base/type";
+@import "base/grid";
+@import "base/fonts";
+
+// Vendor
+@import "vendor/all";
+
+// Elements
+@import "elements/all";
+
+// Components
+
+// Sections
+@import "../templates/sections/footer/footer";
+
+// Pages
+@import "pages/all";

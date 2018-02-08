@@ -1,0 +1,45 @@
+///////////////////////////////////////////////////////////////////////////////
+//   # Base styles
+//     All your general styles should be here
+///////////////////////////////////////////////////////////////////////////////
+
+/**
+ *
+ * To call a image you should follow the example :
+ *
+ * background: url('~@img/sua-foto.png');
+ *
+ */
+
+html {
+  font-size: 95%;
+  font-family: $f-body;
+  line-height: 1.1;
+  @include at-media(large){
+    font-size: 112.5%;
+    line-height: 1.35;
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  //background-image: url('~@img/adv_logo.png');
+  background: linear-gradient(141deg, #b8220f 0%, #bf0f0fc7 51%, #e8a82c 75%);
+}
+
+.advance {
+  padding: 30px;
+
+  img {
+    max-height: 500px;
+  }
+
+  h1 {
+    margin-top: 0px;
+    text-align: center;
+    color: color(brand);
+  }
+}

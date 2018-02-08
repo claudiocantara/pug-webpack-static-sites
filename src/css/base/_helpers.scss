@@ -1,0 +1,63 @@
+///////////////////////////////////////////////////////////////////////////////
+// # Helpers
+///////////////////////////////////////////////////////////////////////////////
+
+// ## General use container
+///////////////////////////////////////////////////////////////////////////////
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+
+  @include at-media(small) {
+    width: 750px;
+  }
+
+  @include at-media(medium) {
+    width: 970px;
+  }
+
+  @include at-media(large) {
+    width: 1170px;
+  }
+}
+
+// ## Text Helpers
+///////////////////////////////////////////////////////////////////////////////
+
+.txt-left {
+  text-align: left;
+}
+.txt-center {
+  text-align: center;
+}
+.txt-right {
+  text-align: right;
+}
+.txt-justify {
+  text-align: justify;
+}
+
+// ## Responsive helpers
+///////////////////////////////////////////////////////////////////////////////
+
+@media only screen and (max-width: 767px) {
+  .hidden-small {
+    display: none;
+  }
+}
+
+@include at-media(small) {
+  .hidden-medium {
+    display: none;
+  }
+}
+
+@include at-media(medium) {
+  .hidden-large {
+    display: none;
+  }
+}
