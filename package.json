@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "url-project": "http://a.com/",
+  "url-project": "https://github.com/claudiocantara/pug-webpack-static-sites",
   "scripts": {
-    "dev": "NODE_ENV=devlopment webpack --progress --watch  --config build/webpack.dev.js",
+    "dev": "NODE_ENV=devlopment webpack --progress --watch --config build/webpack.dev.js",
     "start": "npm run dev",
     "build": "npm run prod",
-    "start:error": "NODE_ENV=devlopment webpack --progress --watch  --config build/webpack.dev.error.js",
-    "prod": "NODE_ENV=production webpack  -p --progress --config build/webpack.prod.js"
+    "prod": "NODE_ENV=production webpack -p --progress --config build/webpack.prod.js"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +21,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.26.3",
     "browser-sync-webpack-plugin": "^1.2.0",
     "clean-webpack-plugin": "^0.1.18",
     "copy-webpack-plugin": "^4.1.1",
@@ -38,14 +37,14 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^3.0.1",
-    "favicons-webpack-plugin": "0.0.7",
-    "file-loader": "^1.1.6",
+    "favicons-webpack-plugin": "0.0.9",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.4.2",
-    "img-loader": "^2.0.0",
+    "img-loader": "^2.0.1",
     "loader-utils": "^1.1.0",
-    "node-sass": "^4.5.3",
+    "node-dir": "^0.1.17",
+    "node-sass": "^4.9.4",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "postcss-loader": "^2.0.10",
     "pug-extract-loader": "^1.0.8",
@@ -54,12 +53,11 @@
     "sass-loader": "^6.0.6",
     "schema-utils": "^0.4.3",
     "style-loader": "^0.19.0",
-    "webpack": "^3.10.0",
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
     "loadash": "^1.0.0",
-    "node-dir": "^0.1.17",
+    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   }
 }
