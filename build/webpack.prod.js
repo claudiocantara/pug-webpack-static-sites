@@ -1,9 +1,6 @@
 const path = require("path");
-const webpack = require('webpack');
 const merge = require("webpack-merge");
 
-const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CreateFileWebpack = require('create-file-webpack')
 
@@ -57,22 +54,25 @@ module.exports = new Promise((resolve, reject) => {
               {
                 loader: "img-loader",
                 options: {
-                  debug: true,
-                  gifsicle: {
-                    interlaced: false
-                  },
-                  mozjpeg: {
-                    progressive: true,
-                    arithmetic: false
-                  },
-                  optipng: false, // disabled
-                  pngquant: {
-                    floyd: 0.5,
-                    speed: 2
-                  },
-                  svgo: {
-                    plugins: [{ removeTitle: true }, { convertPathData: false }]
-                  }
+                  plugins: [
+                    require('imagemin-gifsicle')({
+                      interlaced: false
+                    }),
+                    require('imagemin-mozjpeg')({
+                      progressive: true,
+                      arithmetic: false
+                    }),
+                    require('imagemin-pngquant')({
+                      floyd: 0.5,
+                      speed: 2
+                    }),
+                    require('imagemin-svgo')({
+                      plugins: [
+                        { removeTitle: true },
+                        { convertPathData: false }
+                      ]
+                    })
+                  ]
                 }
               }
             ]

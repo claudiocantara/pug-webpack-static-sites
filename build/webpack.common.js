@@ -1,16 +1,14 @@
 const path = require("path");
-const webpack = require("webpack");
-
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const pugData = require(path.resolve(__dirname, "../pug.config.json"));
+const pugData = require("./pug-data.config");
 
 module.exports = {
   resolve: {
     alias: {
-      "@img": path.resolve(__dirname, "../src/img/")
+      "@img": path.resolve(__dirname, "../src/img/"),
+      "@fonts": path.resolve(__dirname, "../src/fonts/")
     }
   },
   module: {
@@ -36,7 +34,7 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           use: [
             {
-              loader: "css-loader"
+              loader: "css-loader",
             },
             {
               loader: "resolve-url-loader"
@@ -54,7 +52,7 @@ module.exports = {
         })
       },
       {
-        test: /\.(eot|ttf|woff|woff2)$/,
+        test: /\.(otf|eot|ttf|woff|woff2)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -78,7 +76,7 @@ module.exports = {
             loader: "pug-html-loader",
             options: {
               pretty: true,
-              data: pugData
+              data: pugData()
             }
           }
         ]
@@ -90,8 +88,8 @@ module.exports = {
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
-      cssProcessorOptions: { discardComments: { removeAll: true } },
+      cssProcessorOptions: { discardComments: { removeAll: true }, zindex: false },
       canPrint: true
-    })
+    }),
   ]
 };
