@@ -9,14 +9,14 @@ const Sitemap = require("./singleton.sitemap");
 
 const sitemap = Sitemap.getInstance();
 
-const getPagesName = pages => {
-  return new Promise(resolve => {
+const getPagesName = (pages) => {
+  return new Promise((resolve) => {
     dir.readFiles(
       pages,
-      function(err, content, next) {
+      (err, content, next) => {
         next();
       },
-      function(err, files) {
+      (err, files) => {
         if (err) throw err;
         resolve(files);
       }
@@ -24,7 +24,7 @@ const getPagesName = pages => {
   });
 };
 
-async function addPlugin() {
+const addPlugin = async () => {
   const pagesDir = path.resolve(__dirname, "../src/templates/pages/");
   const pages = await getPagesName(pagesDir);
 
@@ -33,17 +33,20 @@ async function addPlugin() {
     const compareVal =  path.basename(pagePath, '.pug');
     const newPathBase = pagePath.match(/(?:(?=pages\/)(?:.*)[(?=\/)])/).shift();
     const newPath = newPathBase.match(/[^(?:pages)].+$/);
+    console.log(compareVal)
 
-    common.plugins.push(
-      new HtmlWebpackPlugin({
-        minify: {
-          collapseWhitespace: true
-        },
-        hash: true,
-        template: path.resolve(__dirname, `../${templatePath}`),
-        filename: createFilename(newPath, compareVal),
-      })
-    );
+    if( compareVal !== '.DS_Store'){
+      common.plugins.push(
+        new HtmlWebpackPlugin({
+          minify: {
+            collapseWhitespace: true
+          },
+          hash: true,
+          template: path.resolve(__dirname, `../${templatePath}`),
+          filename: createFilename(newPath, compareVal),
+        })
+      );
+    }
   });
 }
 
@@ -52,15 +55,15 @@ const createFilename = (path, compareVal) => {
 
   const conditionPath =
     compareVal === "index"
-      ? `..${prePath}index.html`
-      : `..${prePath + compareVal}/index.html`;
+      ? `.${prePath}index.html`
+      : `.${prePath + compareVal}/index.html`;
 
-  const page = compareVal == "index" && !path ? "../index.html" : conditionPath;
+  const page = compareVal == "index" && !path ? "./index.html" : conditionPath;
 
   if(process.env.NODE_ENV == "production"){
     sitemap.addURL(page.replace('../', package["url-project"]));
   }
-
+  console.log(page)
   return page;
 };
 
