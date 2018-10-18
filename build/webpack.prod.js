@@ -1,8 +1,8 @@
 const path = require("path");
 const merge = require("webpack-merge");
-
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CreateFileWebpack = require('create-file-webpack')
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 const Sitemap = require("./singleton.sitemap");
 const common = require("./webpack.common");
@@ -16,7 +16,7 @@ module.exports = new Promise((resolve, reject) => {
     const prod = merge(common, {
       entry: [path.resolve(__dirname, "../src/js/main.js")],
       output: {
-        path: path.resolve(__dirname, "../dist/assets/"),
+        path: path.resolve(__dirname, "../dist/"),
         filename: "js/main.js"
       },
       module: {
@@ -42,10 +42,10 @@ module.exports = new Promise((resolve, reject) => {
                       const isRoot = pagesFullPath.match(/[^(?:pages)].+$/);
 
                       if (compareBaseName == "index") {
-                        return !isRoot ? `assets/${file}` : `${path.relative(pagesFullPath, "pages/")}/assets/${file}`;
+                        return !isRoot ? `${file}` : `${path.relative(pagesFullPath, "pages/")}/${file}`;
 
                       } else {
-                        return `${path.relative( `${pagesFullPath}/anotherPath`, "pages/")}/assets/${file}`;
+                        return `${path.relative( `${pagesFullPath}/anotherPath`, "pages/")}/${file}`;
                       }
                     }
                   }
@@ -54,25 +54,27 @@ module.exports = new Promise((resolve, reject) => {
               {
                 loader: "img-loader",
                 options: {
-                  plugins: [
-                    require('imagemin-gifsicle')({
-                      interlaced: false
-                    }),
-                    require('imagemin-mozjpeg')({
-                      progressive: true,
-                      arithmetic: false
-                    }),
-                    require('imagemin-pngquant')({
-                      floyd: 0.5,
-                      speed: 2
-                    }),
-                    require('imagemin-svgo')({
-                      plugins: [
-                        { removeTitle: true },
-                        { convertPathData: false }
-                      ]
-                    })
-                  ]
+                  debug: true,
+                  gifsicle: {
+                    interlaced: false
+                  },
+                  mozjpeg: {
+                    progressive: true,
+                    arithmetic: false
+                  },
+                  optipng: false, // disabled
+                  pngquant: {
+                    floyd: 0.5,
+                    speed: 2,
+                  // quality: '10'
+                  },
+                  svgo: {
+                    plugins: [{
+                      removeTitle: true
+                    }, {
+                      convertPathData: false
+                    }]
+                  }
                 }
               }
             ]

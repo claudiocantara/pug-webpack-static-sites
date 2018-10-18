@@ -13,7 +13,7 @@ const getPagesName = (pages) => {
   return new Promise((resolve) => {
     dir.readFiles(
       pages,
-      (err, content, next) => {
+      (_err, _content, next) => {
         next();
       },
       (err, files) => {
@@ -33,7 +33,6 @@ const addPlugin = async () => {
     const compareVal =  path.basename(pagePath, '.pug');
     const newPathBase = pagePath.match(/(?:(?=pages\/)(?:.*)[(?=\/)])/).shift();
     const newPath = newPathBase.match(/[^(?:pages)].+$/);
-    console.log(compareVal)
 
     if( compareVal !== '.DS_Store'){
       common.plugins.push(
@@ -50,6 +49,13 @@ const addPlugin = async () => {
   });
 }
 
+const handleUrl = url => {
+
+  //cont newUrl = url.()
+
+  return sitemap.addURL(page.replace('./', `${url}/`));
+}
+
 const createFilename = (path, compareVal) => {
   const prePath = path || "/";
 
@@ -59,11 +65,12 @@ const createFilename = (path, compareVal) => {
       : `.${prePath + compareVal}/index.html`;
 
   const page = compareVal == "index" && !path ? "./index.html" : conditionPath;
-
+  console.log(page);
   if(process.env.NODE_ENV == "production"){
-    sitemap.addURL(page.replace('../', package["url-project"]));
+
+   handleUrl(package["url-project"])
   }
-  console.log(page)
+
   return page;
 };
 
