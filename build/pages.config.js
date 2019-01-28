@@ -50,9 +50,6 @@ const addPlugin = async () => {
 }
 
 const handleUrl = url => {
-
-  //cont newUrl = url.()
-
   return sitemap.addURL(page.replace('./', `${url}/`));
 }
 
@@ -65,7 +62,6 @@ const createFilename = (path, compareVal) => {
       : `.${prePath + compareVal}/index.html`;
 
   const page = compareVal == "index" && !path ? "./index.html" : conditionPath;
-  console.log(page);
   if(process.env.NODE_ENV == "production"){
 
    handleUrl(package["url-project"])

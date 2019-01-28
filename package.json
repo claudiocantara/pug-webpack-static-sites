@@ -1,5 +1,5 @@
 {
-  "name": "pug",
+  "name": "pug-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -60,6 +60,7 @@
     "html-loader": "^0.5.5",
     "loadash": "^1.0.0",
     "node-sass": "^4.9.4",
+    "pug": "^2.0.3",
     "webpack": "^4.22.0",
     "webpack-dev-server": "^3.1.9"
   }
